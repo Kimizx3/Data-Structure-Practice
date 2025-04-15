@@ -6,6 +6,7 @@
 
 int main()
 {
+    /* Phase One Test
     Vector<int> myVec;
 
     myVec.PushBack(10);
@@ -23,6 +24,7 @@ int main()
 
     myVec.Clear();
     std::cout << "After Clear(), Size: " << myVec.Size() << ", Empty? " << myVec.Empty() << "\n";
+    */
 
     return 0;
 }
