@@ -2,10 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "Vector.exe"
-		},
-		{
-			"path" : "Vector.pdb"
+			"path" : "Data_Structure_Practice"
 		}
 	],
 	"backtrace" : 1,
@@ -27,7 +24,7 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 7,
+				"line" : 6,
 				"parent" : 0
 			}
 		]
@@ -38,7 +35,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "/DWIN32 /D_WINDOWS /EHsc /Ob0 /Od /RTC1 -std:c++17 -MDd -Zi"
+					"fragment" : "-g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk -fcolor-diagnostics"
 				}
 			],
 			"language" : "CXX",
@@ -56,28 +53,24 @@
 			]
 		}
 	],
-	"id" : "Vector::@6890427a1f51a3e7e1df",
+	"id" : "Data_Structure_Practice::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
 		[
 			{
-				"fragment" : "/DWIN32 /D_WINDOWS /EHsc /Ob0 /Od /RTC1 -MDd -Zi",
+				"fragment" : "-g",
 				"role" : "flags"
 			},
 			{
-				"fragment" : "/machine:x64 /debug /INCREMENTAL /subsystem:console",
+				"fragment" : "",
 				"role" : "flags"
-			},
-			{
-				"fragment" : "kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib",
-				"role" : "libraries"
 			}
 		],
 		"language" : "CXX"
 	},
-	"name" : "Vector",
-	"nameOnDisk" : "Vector.exe",
+	"name" : "Data_Structure_Practice",
+	"nameOnDisk" : "Data_Structure_Practice",
 	"paths" : 
 	{
 		"build" : ".",
@@ -91,13 +84,6 @@
 			[
 				0
 			]
-		},
-		{
-			"name" : "Header Files",
-			"sourceIndexes" : 
-			[
-				1
-			]
 		}
 	],
 	"sources" : 
@@ -105,13 +91,8 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "Vector.cpp",
+			"path" : "main.cpp",
 			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"path" : "Vector.h",
-			"sourceGroupIndex" : 1
 		}
 	],
 	"type" : "EXECUTABLE"

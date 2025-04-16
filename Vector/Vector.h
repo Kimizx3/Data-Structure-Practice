@@ -37,7 +37,7 @@ public:
     void PushBack(const T& value)
     {
         if (m_Size >= m_Capacity)
-            Resize(m_Capacity == 0 ? 1 : m_Capacity * 2); // Expand capacity size if array size is bigger than capacity, reserve memory
+            Resize(m_Capacity == 0 ? 1 : m_Capacity * 2);            // Expand capacity size if array size is bigger than capacity, reserve memory
         m_Data[m_Size++] = value;                                    // Add data to array
     }
 
@@ -67,7 +67,29 @@ public:
     }
 
     // TODO: Phase Two
-    void Insert(size_t index, const T& value);
+    void Insert(size_t index, const T& value)
+    {
+        // Out of bounds
+        if (index > m_Size) return;
+
+        if (m_Size >= m_Capacity)
+            Resize(m_Capacity == 0 ? 1 : m_Capacity * 2);
+
+        // Shift elements from end to index one step to the right
+        for (size_t i = m_Size; i > index; --i)
+        {
+            // 1, 2, 3, 4, 5, 6
+            // 1, 2, 3, 7, 4, 5
+            m_Data[i] = m_Data[i - 1];
+        }
+
+        m_Data[index] = value;
+        ++m_Size;
+    }
+
+
+
+
     void Remove(size_t index);
     void Reverse(size_t capacity);
     void ShrinkToFit();
