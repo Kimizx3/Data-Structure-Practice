@@ -19,11 +19,24 @@ int main()
         std::cout << "Element " << i << ": " << myVec[i] << "\n";
     }
 
-    myVec.PopBack();
-    std::cout << "After PopBack(), Size: " << myVec.Size() << "\n";
+    //myVec.PopBack();
+    //std::cout << "After PopBack(), Size: " << myVec.Size() << "\n";
 
-    myVec.Clear();
-    std::cout << "After Clear(), Size: " << myVec.Size() << ", Empty? " << myVec.Empty() << "\n";
+    //myVec.Clear();
+    //std::cout << "After Clear(), Size: " << myVec.Size() << ", Empty? " << myVec.Empty() << "\n";
+
+    myVec.Insert(2, 30);
+
+    myVec.Remove(1);
+    for (size_t i = 0; i < myVec.Size(); ++i) {
+        std::cout << "Element " << i << ": " << myVec[i] << "\n";
+    }
+    std::cout << "After Remove(), Size: " << myVec.Size() << ", Empty? " << myVec.Empty() << "\n";
+
+    myVec.Reverse(myVec.Size());
+    for (size_t i = 0; i < myVec.Size(); ++i) {
+        std::cout << "Element " << i << ": " << myVec[i] << "\n";
+    }
 
     return 0;
 }

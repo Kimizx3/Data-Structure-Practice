@@ -87,12 +87,83 @@ public:
         ++m_Size;
     }
 
+    void Remove(size_t index)
+    {
+        // Out of bounds
+        if (index >= m_Size) return; // Illegal when index == m_Size
+
+        for (size_t i = index; i < m_Size - 1; ++i)
+        {
+
+            // 1, 2, 3, 4, 5, 6
+            // 1, 2, 4, 5, 6
+
+            m_Data[i] = m_Data[i + 1];
+        }
+        --m_Size;
+    }
 
 
+    void Reverse(size_t capacity)
+    {
+        if (capacity == 0 || capacity > m_Size) return;
+        size_t begin = 0;
+        size_t end = capacity - 1;
+        while (begin < end)
+        {
+            // 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+            // 10, 2, 3, 4, 5, 6, 7, 8, 9, 1
+            // 10, 9, ................, 2, 1
+            // .............................
+            // 10, 9, 8, 7, 6, 5, 4, 3, 2, 1
 
-    void Remove(size_t index);
-    void Reverse(size_t capacity);
-    void ShrinkToFit();
+            T temp = m_Data[begin];
+            m_Data[begin] = m_Data[end];
+            m_Data[end] = temp;
+
+            ++begin;
+            --end;
+        }
+    }
+
+    // Default Version of Reverse()
+    void Reverse()
+    {
+        Reverse(m_Size);
+    }
+
+
+    void ShrinkToFit()
+    {
+        // Capacity: 64
+        // new capacity: 3
+        // Resize current capacity(64) to Resize(3) -> capacity(3)
+
+        if (m_Size < m_Capacity)
+            Resize(m_Size);
+    }
+
+    // Shuffle
+    void Shuffle()
+    {
+        
+    }
+
+    // Sort
+
+    static constexpr size_t npos = static_cast<size_t>(-1);
+    size_t Find(const T& value)
+    {
+        for (size_t i = 0; i < m_Size; ++i)
+        {
+            if (m_Data[i] == value)
+            {
+                return i;
+            }
+        }
+        return npos;
+    }
+
     // Copy Constructor
     // Copy Assignment
     // Move Constructor
