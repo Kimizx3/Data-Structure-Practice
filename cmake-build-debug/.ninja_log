@@ -1,0 +1,11 @@
+# ninja log v6
+16	818	7666289902432791	CMakeFiles/Data_Structure_Practice.dir/main.cpp.obj	3d61ed84fd4dadfd
+819	1264	7666289910458171	Data_Structure_Practice.exe	a14672cb7d42db5d
+13	358	7666289984806956	CMakeFiles/Vector.dir/Vector/Vector.cpp.obj	227a75508cf2363d
+358	759	7666289988251135	Vector.exe	32e6ed3bab02ce6f
+2	325	7666290646910942	CMakeFiles/Vector.dir/Vector/Vector.cpp.obj	227a75508cf2363d
+325	499	7666290650146039	Vector.exe	32e6ed3bab02ce6f
+13	340	7666290905787267	CMakeFiles/Vector.dir/Vector/Vector.cpp.obj	227a75508cf2363d
+341	518	7666290909076218	Vector.exe	32e6ed3bab02ce6f
+1	323	7666291480313356	CMakeFiles/Vector.dir/Vector/Vector.cpp.obj	227a75508cf2363d
+324	508	7666291483537772	Vector.exe	32e6ed3bab02ce6f

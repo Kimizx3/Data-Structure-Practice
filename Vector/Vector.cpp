@@ -38,5 +38,13 @@ int main()
         std::cout << "Element " << i << ": " << myVec[i] << "\n";
     }
 
+    srand(time(nullptr));
+
+    myVec.Shuffle();
+
+    for (size_t i = 0; i < myVec.Size(); ++i) {
+        std::cout << "Shuffled Element " << i << ": " << myVec[i] << "\n";
+    }
+
     return 0;
 }

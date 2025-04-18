@@ -4,6 +4,8 @@
 
 #pragma once
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 
 template<typename T>                        // template class
 class Vector
@@ -34,10 +36,84 @@ public:
     Vector() {};                                                      // Default constructor
     ~Vector() {delete[] m_Data;};                                     // Destructor: clear memory allocation
 
+
+    Vector(const Vector<T&> other)                                    /* Copy Constructor */
+    {
+        m_Capacity = other.m_Capacity;
+        m_Size = other.m_Size;
+
+        m_Data = new T[m_Capacity];
+        for (size_t i = 0; i < m_Size; ++i)
+        {
+            m_Data[i] = other.m_Data[i];
+        }
+    }
+
+    void Copy(const T& other)                                         /* Copy Helper Function */
+    {
+        m_Capacity = other.m_Capacity;
+        m_Size = other.m_Size;
+
+        delete[] m_Data;
+        m_Data = new T[m_Capacity];
+
+        for (size_t i = 0; i < m_Size; ++i)
+        {
+            m_Data[i] = other.m_Data[i];
+        }
+    }
+
+    T& operator=(const T& other)                                     /* Copy Assignment */
+    {
+        if (this == &other) return *this;
+
+        delete[] m_Data;
+        m_Capacity = other.m_Capacity;
+        m_Size = other.m_Size;
+        m_Data = new T[m_Capacity];
+
+        for (size_t i = 0; i < m_Size; ++i)
+        {
+            m_Data[i] = other.m_Data[i];
+        }
+
+        return *this;
+    }
+
+
+    Vector(Vector&& other) noexcept                                  /* Move Constructor */
+    {
+        m_Size = other.m_Size;
+        m_Capacity = other.m_Capacity;
+        m_Data = other.m_Data;
+
+        other.m_Size = 0;
+        other.m_Capacity = 0;
+        other.m_Data = nullptr;
+    }
+
+
+    Vector& operator=(Vector&& other) noexcept                       /* Move Assignment */
+    {
+        if (this == &other) return *this;
+
+        delete[] m_Data;
+
+        m_Size = other.m_Size;
+        m_Capacity = other.m_Capacity;
+        m_Data = other.m_Data;
+
+        other.m_Size = 0;
+        other.m_Capacity = 0;
+        other.m_Data = nullptr;
+
+        return *this;
+    }
+
     void PushBack(const T& value)
     {
         if (m_Size >= m_Capacity)
-            Resize(m_Capacity == 0 ? 1 : m_Capacity * 2);            // Expand capacity size if array size is bigger than capacity, reserve memory
+            Resize(m_Capacity == 0 ? 1 : m_Capacity * 2); // Expand capacity size if array size is bigger than capacity, reserve memory
         m_Data[m_Size++] = value;                                    // Add data to array
     }
 
@@ -146,10 +222,41 @@ public:
     // Shuffle
     void Shuffle()
     {
-        
+        if (m_Size <= 1) return;
+
+        for (size_t i = m_Size - 1; i > 0; --i)
+        {
+            size_t j = rand() % (i + 1); // random index from [0, i]
+
+            T temp = m_Data[i];
+            m_Data[i] = m_Data[j];
+            m_Data[j] = temp;
+        }
     }
 
-    // Sort
+    /* Sort */
+    void Swap(size_t i, size_t j)
+    {
+        T temp = m_Data[i];
+        m_Data[i] = m_Data[j];
+        m_Data[j] = temp;
+    }
+
+    void SortBubble(size_t bValue, size_t eValue)
+    {
+        if (m_Size <= 1 || bValue >= m_Size || eValue >= m_Size || bValue >= eValue) return;
+
+        for (size_t i = bValue; i <= eValue; ++i)
+        {
+            for (size_t j = i + 1; j <= eValue; ++j)
+            {
+                if (m_Data[i] > m_Data[j])
+                {
+                    Swap(i, j);
+                }
+            }
+        }
+    }
 
     static constexpr size_t npos = static_cast<size_t>(-1);
     size_t Find(const T& value)
@@ -164,10 +271,7 @@ public:
         return npos;
     }
 
-    // Copy Constructor
-    // Copy Assignment
-    // Move Constructor
-    // Move Assignment
+
     // Range Check to operator[]
     // Write Unit Tests for Insert / Remove
     // Iterator supports begin(), end()
