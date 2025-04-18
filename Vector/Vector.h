@@ -275,6 +275,16 @@ public:
     // Range Check to operator[]
     // Write Unit Tests for Insert / Remove
     // Iterator supports begin(), end()
+    T Begin()
+    {
+        
+    }
+
+    void End()
+    {
+
+    }
+
     // emplace_back() using placement new
     // Add to my own Mini STL library, combine with my other data structures
 };
