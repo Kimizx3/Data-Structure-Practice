@@ -15,7 +15,7 @@ private:
     size_t m_Size = 0;                      // Number of elements currently in the vector
     size_t m_Capacity = 0;                  // Total capacity of the allocated array
 
-    void Resize(size_t newCapacity)
+    void Reallocate(size_t newCapacity)
     {
         T* newData = new T[newCapacity];    // Allocate new block
 
@@ -80,13 +80,12 @@ public:
         return *this;
     }
 
-
-    Vector(Vector&& other) noexcept                                  /* Move Constructor */
+    /* Move Constructor */
+    Vector(Vector&& other) noexcept
+    : m_Size(other.m_Size),
+      m_Capacity(other.m_Capacity),
+      m_Data(other.m_Data)
     {
-        m_Size = other.m_Size;
-        m_Capacity = other.m_Capacity;
-        m_Data = other.m_Data;
-
         other.m_Size = 0;
         other.m_Capacity = 0;
         other.m_Data = nullptr;
@@ -113,7 +112,7 @@ public:
     void PushBack(const T& value)
     {
         if (m_Size >= m_Capacity)
-            Resize(m_Capacity == 0 ? 1 : m_Capacity * 2); // Expand capacity size if array size is bigger than capacity, reserve memory
+            Reallocate(m_Capacity == 0 ? 1 : m_Capacity * 2); // Expand capacity size if array size is bigger than capacity, reserve memory
         m_Data[m_Size++] = value;                                    // Add data to array
     }
 
@@ -149,7 +148,7 @@ public:
         if (index > m_Size) return;
 
         if (m_Size >= m_Capacity)
-            Resize(m_Capacity == 0 ? 1 : m_Capacity * 2);
+            Reallocate(m_Capacity == 0 ? 1 : m_Capacity * 2);
 
         // Shift elements from end to index one step to the right
         for (size_t i = m_Size; i > index; --i)
@@ -216,7 +215,7 @@ public:
         // Resize current capacity(64) to Resize(3) -> capacity(3)
 
         if (m_Size < m_Capacity)
-            Resize(m_Size);
+            Reallocate(m_Size);
     }
 
     // Shuffle
@@ -272,19 +271,36 @@ public:
     }
 
 
-    // Range Check to operator[]
-    // Write Unit Tests for Insert / Remove
-    // Iterator supports begin(), end()
-    T Begin()
+    // TODO: Range Check to operator[]
+
+
+    inline const T* Begin() const { return m_Data; }        /* begin() iterator */
+    inline const T* End() const { return m_Data + m_Size; } /* end() iterator */
+
+
+    void EmplaceBack(const T& value) /* Copy Version emplace_back() */
     {
-        
+        if (m_Size >= m_Capacity) Reallocate(m_Capacity == 0 ? 1 : m_Capacity * 2);
+        m_Data[m_Size] = value;
+        m_Size++;
     }
 
-    void End()
+    void EmplaceBack(T&& value)     /* Move Version emplace_back() */
+    {
+        if (m_Size >= m_Capacity) Reallocate(m_Capacity == 0 ? 1 : m_Capacity * 2);
+        m_Data[m_Size] = value;
+        m_Size++;
+    }
+
+    void Assign(T& nums, T& value)
     {
 
     }
 
-    // emplace_back() using placement new
+    void Assign()
+    {
+
+    }
+
     // Add to my own Mini STL library, combine with my other data structures
 };
