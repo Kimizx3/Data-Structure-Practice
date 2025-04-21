@@ -113,32 +113,32 @@ public:
     {
         if (m_Size >= m_Capacity)
             Reallocate(m_Capacity == 0 ? 1 : m_Capacity * 2); // Expand capacity size if array size is bigger than capacity, reserve memory
-        m_Data[m_Size++] = value;                                    // Add data to array
+        m_Data[m_Size++] = value;                                        // Add data to array
     }
 
     void PopBack()
     {
         if (m_Size > 0)
-            --m_Size;                                                // If array size is not 0, decrease array size by 1
+            --m_Size;                                                   // If array size is not 0, decrease array size by 1
     }
 
-    inline size_t Size() const {return m_Size;};                     // CHECKER FUNCTION for array size
-    inline size_t Capacity() const {return m_Capacity;};             // CHECKER FUNCTION for capacity size
-    inline bool Empty() const {return m_Size == 0;};                 // CHECKER FUNCTION for current array size, return true if array is empty
+    inline size_t Size() const {return m_Size;};                        // CHECKER FUNCTION for array size
+    inline size_t Capacity() const {return m_Capacity;};                // CHECKER FUNCTION for capacity size
+    inline bool Empty() const {return m_Size == 0;};                    // CHECKER FUNCTION for current array size, return true if array is empty
 
     T& operator[](size_t index)
     {
-        return m_Data[index];                                        // SQUARE BRACKET OPERATOR to assign current indexed array member element
+        return m_Data[index];                                           // SQUARE BRACKET OPERATOR to assign current indexed array member element
     }
 
     const T& operator[](size_t index) const
     {
-        return m_Data[index];                                        // SQUARE BRACKET OPERATOR to check current indexed array member element
+        return m_Data[index];                                           // SQUARE BRACKET OPERATOR to check current indexed array member element
     }
 
     void Clear()
     {
-        m_Size = 0;                                                 // Clear current array size, capacity & data pointer remain for future reuse
+        m_Size = 0;                                                     // Clear current array size, capacity & data pointer remain for future reuse
     }
 
     // TODO: Phase Two
@@ -278,26 +278,52 @@ public:
     inline const T* End() const { return m_Data + m_Size; } /* end() iterator */
 
 
-    void EmplaceBack(const T& value) /* Copy Version emplace_back() */
+    void EmplaceBack(const T& value)                        /* Copy Version emplace_back() */
     {
         if (m_Size >= m_Capacity) Reallocate(m_Capacity == 0 ? 1 : m_Capacity * 2);
         m_Data[m_Size] = value;
         m_Size++;
     }
 
-    void EmplaceBack(T&& value)     /* Move Version emplace_back() */
+    void EmplaceBack(T&& value)                             /* Move Version emplace_back() */
     {
         if (m_Size >= m_Capacity) Reallocate(m_Capacity == 0 ? 1 : m_Capacity * 2);
         m_Data[m_Size] = value;
         m_Size++;
     }
 
-    void Assign(T& nums, T& value)
+    void Assign(size_t first, size_t last)                          /* Assign() Function */
     {
 
     }
 
-    void Assign()
+    void Assign(size_t n, T& value)                         /* Assign() Function */
+    {
+
+    }
+
+    void Assign(T& value)
+    {
+
+    }
+
+    void Reserve(size_t newCapacity)
+    {
+        if (m_Capacity > newCapacity) return;
+
+        T* temp = new T[newCapacity];
+
+        for (size_t i = 0; i < m_Size; ++i)
+        {
+            temp[i] = Move(m_Data[i]);
+        }
+
+        delete[] m_Data;
+        m_Data = temp;
+        m_Capacity = newCapacity;
+    }
+
+    void Move(T& value)
     {
 
     }
