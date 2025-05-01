@@ -1,4 +1,5 @@
 E:/CPPStuff/Data-Structure-Practice/cmake-build-debug/CMakeFiles/Data_Structure_Practice.dir
 E:/CPPStuff/Data-Structure-Practice/cmake-build-debug/CMakeFiles/Vector.dir
+E:/CPPStuff/Data-Structure-Practice/cmake-build-debug/CMakeFiles/MyNamespace.dir
 E:/CPPStuff/Data-Structure-Practice/cmake-build-debug/CMakeFiles/edit_cache.dir
 E:/CPPStuff/Data-Structure-Practice/cmake-build-debug/CMakeFiles/rebuild_cache.dir

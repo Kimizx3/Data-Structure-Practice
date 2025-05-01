@@ -16,7 +16,8 @@
 					"targetIndexes" : 
 					[
 						0,
-						1
+						1,
+						2
 					]
 				}
 			],
@@ -32,7 +33,8 @@
 					"targetIndexes" : 
 					[
 						0,
-						1
+						1,
+						2
 					]
 				}
 			],
@@ -41,8 +43,15 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "Data_Structure_Practice::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-Data_Structure_Practice-Debug-d951a9c55c3fb8ecfc0f.json",
+					"jsonFile" : "target-Data_Structure_Practice-Debug-c10c63266b67113aec48.json",
 					"name" : "Data_Structure_Practice",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "MyNamespace::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-MyNamespace-Debug-7f736311b3c5cefc4f6d.json",
+					"name" : "MyNamespace",
 					"projectIndex" : 0
 				},
 				{
